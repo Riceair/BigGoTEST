@@ -8,7 +8,7 @@ class PHPTable2py():
         self.token = ""
 
     def run(self):
-        file = open("ZhConversion.php","r", encoding="utf-8")
+        file = open(self.path,"r", encoding="utf-8")
         for line in file.readlines():
             if self.isProcess:
                 if "]" in line: # Get end symbol
