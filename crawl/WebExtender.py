@@ -40,13 +40,13 @@ class WebExtender:
         return self.edge.page_source
 
 if __name__=="__main__":
-    from ProductParserbs4 import ProductParserbs4
+    from ProductParser import ProductParser
 
     url = "https://tw.carousell.com/categories/women-s-fashion-4/"
     extender = WebExtender()
     extender.extendTimes(url, 1)
     html_text = extender.getPage()
 
-    parser = ProductParserbs4()
+    parser = ProductParser()
     parser.recordNamePrice(html_text)
     print(len(parser.products), parser.products)
