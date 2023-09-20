@@ -4,8 +4,8 @@ from selenium import webdriver
 import time
 
 class WebExtender:
-    def __init__(self, is_all=False, open_time=3, extend_time=3):
-        self.is_all = is_all
+    def __init__(self, is_sort=False, open_time=3, extend_time=3):
+        self.is_sort = is_sort
         self.open_time = open_time
         self.extend_time = extend_time
         options = Options()
@@ -18,7 +18,7 @@ class WebExtender:
     def extend(self, url):
         self.edge.get(url)
         time.sleep(self.open_time)
-        if self.is_all: # "最佳匹配"排序拿不到所有資料，改成"近期"排序拿的資料比較多
+        if self.is_sort: # "最佳匹配"排序拿不到所有資料，改成"近期"排序拿的資料比較多
             self.__changeSort()
 
         while True:
@@ -32,7 +32,7 @@ class WebExtender:
     def extendTimes(self, url, times):
         self.edge.get(url)
         time.sleep(self.open_time)
-        if self.is_all: # "最佳匹配"排序拿不到所有資料，改成"近期"排序拿的資料比較多
+        if self.is_sort: # "最佳匹配"排序拿不到所有資料，改成"近期"排序拿的資料比較多
             self.__changeSort()
 
         for _ in range(times):
