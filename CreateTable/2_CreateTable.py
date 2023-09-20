@@ -22,8 +22,8 @@ for table in dict_list:
 
 # 依照文字長度排序 (由長到短)
 big_table = dict(sorted(big_table.items(), key=lambda x: len(x[0]), reverse=True))
-json.dump(big_table, open("ConversionTable.json", "w"))
+json.dump(big_table, open("CreateTable/ConversionTable.json", "w"))
 
 # 讀檔測試
-data = json.load(open("ConversionTable.json"))
+data = json.load(open("CreateTable/ConversionTable.json"))
 print(data)

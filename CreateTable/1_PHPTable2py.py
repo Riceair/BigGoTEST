@@ -43,5 +43,5 @@ class PHPTable2py():
         self.token = ""
 
 if __name__=="__main__":
-    processor = PHPTable2py("ZhConversion.php", "ZhConversion.py")
+    processor = PHPTable2py("CreateTable/ZhConversion.php", "CreateTable/ZhConversion.py")
     processor.run()
