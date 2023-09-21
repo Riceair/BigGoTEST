@@ -13,8 +13,8 @@ finder = WebUrlFinder(start_url)
 urls = finder.getPageUrls(is_sub_cate=True) # 使用子類別 (example: 手機及配件的對講機)
 edge = finder.getEdge()
 
-# demo 取五個網頁
-urls = urls[:3] + urls[35:37]
+# demo 取3個網頁
+urls = urls[15:16] + urls[35:37]
 
 # 類別宣告
 extender = WebExtender(edge, is_sort=True, open_time=3, extend_time=3) # 功能: 用來把"顯示更多結果"按鈕按完 is_sort會改變排序(預設排序無法顯示所有產品)
@@ -29,7 +29,7 @@ if Path(save_path).is_file(): # 檢查檔案是否存在
 # 開始抓所有資料
 products = set() # 紀錄所有產品 (用set去除重複的商品)
 for url in urls:
-    extender.extendTimes(url, 3) # 展開網頁 (demo只展開三次)
+    extender.extendTimes(url, 2) # 展開網頁 (demo只展開2次)
     html_text = extender.getPage() # 取得展開後的html
     parser.recordNamePrice(html_text) # 紀錄名稱與價格
     parsed_products = parser.getProducts() # 取得名稱與價格
