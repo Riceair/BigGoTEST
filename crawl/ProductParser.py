@@ -8,6 +8,7 @@ class ProductParser:
     def __init__(self):
         self.products = []
 
+    # For testing
     def selenium_one_page(self, url):
         options = Options()
         options.add_argument("--disable-popup-blocking")
@@ -18,6 +19,7 @@ class ProductParser:
         time.sleep(3)
         self.recordNamePrice(edge.page_source)
 
+    # For testing
     def request_one_page(self, url):
         req = requests.get(url)
         self.recordNamePrice(req.text)
@@ -52,6 +54,9 @@ class ProductParser:
                 name_count[class_name] += 1
         product_name = sorted(name_count.items(), key=lambda item: item[1], reverse=True)[0][0]
         return product_name
+
+    def clear(self):
+        self.products = []
 
     def getProducts(self):
         return self.products
