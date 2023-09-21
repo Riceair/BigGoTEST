@@ -15,8 +15,8 @@ WebExtender.py 改變排序方式 (預設排序方式不會顯示所有資料) �
 ProductParser.py 解析網頁中的商品名稱、價格
 
 ### Demo
-Problem1.py 跑所有內容
-Problem1_demo.py 跑5個網頁，且每個網頁只按3次"顯示更多結果"
+Problem1.py 跑所有內容  
+Problem1_demo.py 跑5個網頁，且每個網頁只按3次"顯示更多結果"  
 
 ## Problem 2
 ### Thread
