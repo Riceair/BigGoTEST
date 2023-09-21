@@ -4,15 +4,19 @@ from selenium import webdriver
 import time
 
 class WebExtender:
-    def __init__(self, is_sort=False, open_time=3, extend_time=3):
+    def __init__(self, edge=None, is_sort=False, open_time=3, extend_time=3):
         self.is_sort = is_sort
         self.open_time = open_time
         self.extend_time = extend_time
-        options = Options()
-        options.add_argument("--disable-popup-blocking")
-        options.add_argument('--disable-default-apps')
-        options.add_argument('--disable-notifications')
-        self.edge = webdriver.Edge(options=options)
+
+        if edge == None:
+            options = Options()
+            options.add_argument("--disable-popup-blocking")
+            options.add_argument('--disable-default-apps')
+            options.add_argument('--disable-notifications')
+            self.edge = webdriver.Edge(options=options)
+        else:
+            self.edge = edge
     
     # 將單一網頁延伸 (把顯示更多結果按完)
     def extend(self, url):
@@ -46,12 +50,15 @@ class WebExtender:
 
     # 改成用近期排序
     def __changeSort(self):
+        labels_before_dropdown = self.edge.find_elements(By.CSS_SELECTOR, "label") # 按下拉式選單前的label
         sections = self.edge.find_elements(By.CSS_SELECTOR, "section")
-        # 排序按鈕在這 (用class name抓不到，會噴錯)
-        buttons = sections[2].find_elements(By.CSS_SELECTOR, "button")
+        buttons = sections[-2].find_elements(By.CSS_SELECTOR, "button")
         buttons[1].click()
         time.sleep(1)
-        dropdown = self.edge.find_elements(By.CSS_SELECTOR, ".D_bck label") # 下拉式選單
+        labels = self.edge.find_elements(By.CSS_SELECTOR, "label") # 按下拉式選單後的label
+        for label in labels_before_dropdown: # 保留下拉式選單的label
+            labels.remove(label)
+        dropdown = labels # 下拉式選單
         dropdown[1].click() # 使用近期排序
         time.sleep(2)
 
@@ -62,9 +69,9 @@ if __name__=="__main__":
     from ProductParser import ProductParser
 
     url = "https://tw.carousell.com/categories/women-s-fashion-4/"
-    extender = WebExtender(is_all=True)
+    extender = WebExtender(is_sort=True)
     # extender.extend(url)
-    extender.extendTimes(url, 3)
+    extender.extendTimes(url, 1)
     html_text = extender.getPage()
 
     parser = ProductParser()
