@@ -17,8 +17,12 @@ ProductParser.py 解析網頁中的商品名稱、價格
 ### Demo
 Problem1.py 跑所有內容  
 Problem1_demo.py 跑3個網頁，且每個網頁只按2次"顯示更多結果"  
-結果會儲存為csv檔    
+結果會儲存為csv檔  
+demo 影片連結: https://youtu.be/kUxyFUVyYxU  
 
 ## Problem 2
 ### Thread
 使用 Event 方式呼叫其他 thread 執行  
+
+### Demo
+demo 影片連結: https://youtu.be/nJ2SiJF5I-A  
